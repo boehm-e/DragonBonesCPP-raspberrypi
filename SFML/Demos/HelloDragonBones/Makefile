@@ -76,11 +76,11 @@ override TARGET:=$(PLATFORM)$(ARCH)
 #
 
 # Output/runtime file name
-OUT_NAME := DragonBoy
-RUN_NAME := DragonBoy
+OUT_NAME := MagicLamp
+RUN_NAME := MagicLamp
 
 # Run params
-PARAMS := 
+PARAMS :=
 
 # Folders structure
 INC_DIRS := .
@@ -95,11 +95,11 @@ SRC_EXTS := .cpp .c
 INC_EXTS := .hpp .h
 TEP_EXTS := .tpp .t
 OBJ_EXT := .o
-OUT_EXT := .exe
-RUN_EXT := .exe
+OUT_EXT :=
+RUN_EXT :=
 
-# Compiler and linker 
-CXX      := g++ 
+# Compiler and linker
+CXX      := g++
 CXXFLAGS := -std=c++17 -Wall
 LD       := g++
 LDFLAGS  :=
@@ -126,23 +126,23 @@ CXXFLAGS_DYNAMIC :=
 
 # Cleaning
 ifeq ($(MAKECMDGOALS),clean)
-    CLEAN_FILES_CMD := rm 
+    CLEAN_FILES_CMD := rm
     CLEAN_FILES := "./*.$(OBJ_EXT)" "./$(OUT_NAME)$(OUT_EXT)"
-    CLEAN_DIRS_CMD := rm -dr 
+    CLEAN_DIRS_CMD := rm -dr
     CLEAN_DIRS  :=
 endif
 
 # Other tools
 LS := ls -AdoGh --time-style long-iso
-MKDIR = mkdir -p 
+MKDIR = mkdir -p
 
-# Libraries 
+# Libraries
 LIB_LIST := SFML
 #   SFML
  CXXFLAGS_STATIC_SFML   := -DSFML_STATIC
-  LDFLAGS_STATIC_SFML   := -lsfml-audio-s -lsfml-graphics-s -lsfml-window-s -lsfml-system-s -lopengl32 -lfreetype -ljpeg -lopengl32 -lwinmm -lgdi32 -lopenal32 -lflac -lvorbisenc -lvorbisfile -lvorbis -logg -lws2_32 -lwinmm -DSFML_STATIC
+  LDFLAGS_STATIC_SFML   := -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system -lfreetype -ljpeg -lvorbisenc -lvorbisfile -lvorbis -logg -DSFML_STATIC
 CXXFLAGS_DYNAMIC_SFML   :=
- LDFLAGS_DYNAMIC_SFML   := -lsfml-audio   -lsfml-graphics   -lsfml-window   -lsfml-system   -lopengl32 -lfreetype -ljpeg -lopengl32 -lwinmm -lgdi32 -lopenal32 -lflac -lvorbisenc -lvorbisfile -lvorbis -logg -lws2_32 -lwinmm
+ LDFLAGS_DYNAMIC_SFML   := -lsfml-audio   -lsfml-graphics   -lsfml-window   -lsfml-system   -lfreetype -ljpeg -lvorbisenc -lvorbisfile -lvorbis -logg
  MXE_PACKAGENAME_SFML   := sfml
 
 # Header-only libs
@@ -160,7 +160,7 @@ COLORS := no
 MARKERS := @todo @warn @err @debug
 
 # Dependencies finding
-DEPFLAGS := -MT $$@ -MMD -MP -MF 
+DEPFLAGS := -MT $$@ -MMD -MP -MF
 DEP_EXT := .d
 DEP_TMP_UPDATE_SUFFIX := .tmp
 
@@ -205,9 +205,9 @@ CLEAN_DIRS  := $(shell find . -type d -path $(subst $(SPACE), -or -path ,$(CLEAN
 
 # Cleaning the compile environment
 .PHONY: clean
-clean: 
+clean:
 	$(inform_cleaning)
-ifeq ($(or $(CLEAN_FILES),$(CLEAN_DIRS),$(CLEAN_FORCE)),) 
+ifeq ($(or $(CLEAN_FILES),$(CLEAN_DIRS),$(CLEAN_FORCE)),)
 	@echo "Nothing to clean."
 else
 	$(V)-$(CLEAN_FILES_CMD) $(CLEAN_FILES) $(SLIENT) || :
@@ -228,7 +228,7 @@ override LINKING := $(shell echo $(LINKING) | tr a-z A-Z)
 CXXFLAGS += $(CXXFLAGS_$(LINKING))
 LDFLAGS  += $( LDFLAGS_$(LINKING))
 
-# Architecture 
+# Architecture
 CROSS := $(ARCH_$(ARCH))
 ifeq ($(CROSS),)
     $(error "Target architecture not selected propertly... ARCH=$(ARCH)")
@@ -319,7 +319,7 @@ $(foreach LIB_NAME, $(HEADER_LIB_LIST), $(eval CXXFLAGS += -I$(HEADER_INC_$(LIB_
 
 
 #
-# Other 
+# Other
 #
 
 # Colon replacement
@@ -353,13 +353,13 @@ ifndef grep_markers
     grep_markers := @xd(){ grep -i -C1 '$(subst $(SPACE),\|,$(MARKERS))' $$1 || :; }; xd
 endif
 
-# Informations 
+# Informations
 ifeq ($(COLORS),yes)
     ifndef inform_executable
         inform_executable   := @printf "\033[32m[Executable] %s\033[0m \n"
     endif
     ifndef inform_object
-        inform_object       := @printf "\033[33m[Object] %s\033[0m \n" 
+        inform_object       := @printf "\033[33m[Object] %s\033[0m \n"
     endif
     ifndef inform_source
         inform_source       := @printf "\033[34m[Source] %s\033[0m \n"
@@ -381,7 +381,7 @@ else
         inform_executable   := @printf "[Executable] %s \n"
     endif
     ifndef inform_object
-        inform_object       := @printf "[Object] %s \n" 
+        inform_object       := @printf "[Object] %s \n"
     endif
     ifndef inform_source
         inform_source       := @printf "[Source] %s \n"
@@ -432,10 +432,10 @@ DEPENDENCIES := $(patsubst %$(OBJ_EXT),%$(DEP_EXT),$(OBJECTS))
 # Standard options
 .PHONY: default nothing all
 defualt: all
-nothing: 
+nothing:
 all: exe more_rules
 
-# Linking 
+# Linking
 .PHONY: exe
 exe: $(OUT_FILE)
 $(OUT_FILE): $(OBJECTS)
@@ -504,7 +504,7 @@ $(TEMPLATES):
 	$(inform_template) $@
 	$(grep_markers) $@
 
-# Code 
+# Code
 .PHONY: code
 code: src inc tep
 
@@ -513,7 +513,7 @@ endif
 
 
 #
-# Other recipes 
+# Other recipes
 #
 
 .PHONY: more_rules
@@ -527,9 +527,9 @@ run: all
 	$(V)chmod +x $(RUN_FILE)
 	$(V)-cd ./$(RUN_DIR) ; ./$(RUN_NAME)$(RUN_EXT) $(PARAMS)
 
-# Informations (for debug) 
+# Informations (for debug)
 .PHONY: info echo
-info: echo 
+info: echo
 echo:
 	@echo ""
 	@echo "TARGET=$(TARGET) -> PLATFORM=$(PLATFORM), ARCH=$(ARCH), MXE=$(MXE)"
@@ -555,5 +555,3 @@ echo:
 	@echo "Templates:"
 	@echo -e "$(subst $(SPACE),\n,$(TEMPLATES))"
 	@echo ""
-
-

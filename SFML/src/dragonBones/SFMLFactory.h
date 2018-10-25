@@ -7,7 +7,7 @@
 
 #include <string>
 #include <vector>
-
+#include <memory>
 #include <dragonBones/DragonBonesHeaders.h>
 
 #include <SFML/Graphics/Texture.hpp>
