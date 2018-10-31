@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "Settings.h"
 
 using namespace std;
 
@@ -15,4 +16,5 @@ public:
   sf::Sprite *background;
   sf::Sprite *background_loop;
 
+  Settings *settings;
 };

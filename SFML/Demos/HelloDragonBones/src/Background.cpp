@@ -2,6 +2,8 @@
 using namespace std;
 
 Background::Background(string name) {
+  settings  = Settings::getInstance();
+
   this->texture = new sf::Texture();
   if (!this->texture->loadFromFile("./data/landscapes/"+name+".png")){
     cout << "Background.cpp > could not load background" << endl;
@@ -15,9 +17,7 @@ Background::Background(string name) {
 }
 
 void Background::Draw(sf::RenderWindow * window) {
-  // cout << "background width" << background->getGlobalBounds().width << endl;
-  cout << "background remain visible : " << background->getGlobalBounds().width - 854 + background->getPosition().x << endl;
-  if (background_loop->getGlobalBounds().width - 854 + background_loop->getPosition().x < 0) {
+  if (background_loop->getGlobalBounds().width - settings->width + background_loop->getPosition().x < 0) {
     cout << "SWITCH" << endl;
     sf::Sprite *background_tmp = background_loop;
     background_loop = background;
@@ -29,6 +29,6 @@ void Background::Draw(sf::RenderWindow * window) {
 }
 
 void Background::Update(float deltaTime) {
-  this->background->setPosition( this->background->getPosition().x-deltaTime*100 , 0);
+  this->background->setPosition( this->background->getPosition().x-deltaTime*24 , 0);
   this->background_loop->setPosition( this->background->getPosition().x+this->background->getGlobalBounds().width, 0);
 }

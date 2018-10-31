@@ -3,6 +3,7 @@
 #include <iostream>
 #include "./Character.h"
 #include "./Background.h"
+#include "./Settings.h"
 using namespace std;
 
 
@@ -14,12 +15,10 @@ public:
   sf::Texture *texture;
   sf::RenderWindow * window;
    // projector resolution
-  float width = 854.0f;
-  float height = 480.0f;
-
   list<Character*> characters;
 
   void Start(bool fullscreen);
   void Events();
   Character *findCharacterByName(string name);
+  Settings *settings;
 };

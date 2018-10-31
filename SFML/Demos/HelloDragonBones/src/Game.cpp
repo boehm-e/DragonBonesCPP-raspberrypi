@@ -26,28 +26,28 @@ void Game::Events() {
 }
 
 void Game::Start(bool fullscreen) {
-
+	settings = Settings::getInstance();
 	if (fullscreen == true) {
-		window = new sf::RenderWindow(sf::VideoMode(this->width, this->height), "Magic Lamp", sf::Style::Fullscreen);
+		window = new sf::RenderWindow(sf::VideoMode(settings->width, settings->height), "Magic Lamp", sf::Style::Fullscreen);
 	}
 	else  {
-		window = new sf::RenderWindow(sf::VideoMode(this->width, this->height), "Magic Lamp");
+		window = new sf::RenderWindow(sf::VideoMode(settings->width, settings->height), "Magic Lamp");
 	}
 	this->window->setMouseCursorVisible(false);
 
 
-	Background *background = new Background("landscape");
+	Background *background = new Background("castle");
 
 
 	Character *sheep = new Character("sheep", 0.25f);
 	sheep->setAnimation("goat_sleep_idle_anim");
 	sheep->setFlipX(true);
-	sheep->setPosition(427.f, this->height);
+	sheep->setPosition(427.f, settings->height);
 	characters.push_back(sheep);
 
 	Character *dragon = new Character("dragon", 0.25f);
 	dragon->setAnimation("stand");
-	dragon->setPosition(227.f, this->height);
+	dragon->setPosition(227.f, settings->height);
 	characters.push_back(dragon);
 
 
