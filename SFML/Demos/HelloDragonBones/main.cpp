@@ -7,11 +7,16 @@ using namespace std;
 
 list<Character*> characters;
 
-// void createSheep() {}
-
 int main()
 {
+
+	#ifdef __arm__
+	sf::RenderWindow window(sf::VideoMode(640, 360), "Magic Lamp", sf::Style::Fullscreen);
+  #endif
+
+	#ifndef __arm__
 	sf::RenderWindow window(sf::VideoMode(640, 360), "Magic Lamp");
+	#endif
 	window.setFramerateLimit(60);
 
 
@@ -51,7 +56,7 @@ int main()
 		}
 
 		for (auto &character : characters) {
-			character->factory.update(deltaTime);
+			character->factory.update(deltaTime/2);
 		}
 
 		window.clear();

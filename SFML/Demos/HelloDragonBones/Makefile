@@ -233,8 +233,8 @@ CROSS := $(ARCH_$(ARCH))
 ifeq ($(CROSS),)
     $(error "Target architecture not selected propertly... ARCH=$(ARCH)")
 endif
-CXXFLAGS += -m$(ARCH)
-LDFLAGS  += -m$(ARCH)
+# CXXFLAGS += -m$(ARCH)
+# LDFLAGS  += -m$(ARCH)
 
 # Platform
 # -> Windows...
