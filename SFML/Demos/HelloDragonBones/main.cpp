@@ -12,10 +12,12 @@ int main()
 
 	#ifdef __arm__
 	sf::RenderWindow window(sf::VideoMode(640, 360), "Magic Lamp", sf::Style::Fullscreen);
+	cout << "---- FULLSCREEN" << endl;
   #endif
 
 	#ifndef __arm__
 	sf::RenderWindow window(sf::VideoMode(640, 360), "Magic Lamp");
+	cout << "---- NOT FULLSCREEN" << endl;
 	#endif
 	window.setFramerateLimit(60);
 
