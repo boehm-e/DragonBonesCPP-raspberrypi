@@ -3,21 +3,16 @@ using namespace std;
 
 Character::Character(string name, float scale) {
 
-
-  cout << " == DEBUG 1" << endl;
+  this->name = name;
   texture.loadFromFile("data/characters/"+name+"/"+name+"_tex.png");
-  cout << " == DEBUG 2" << endl;
   factory.loadDragonBonesData("data/characters/"+name+"/"+name+"_ske.json");
-  cout << " == DEBUG 3" << endl;
   factory.loadTextureAtlasData("data/characters/"+name+"/"+name+"_tex.json", &texture);
-  cout << " == DEBUG 4" << endl;
   armatureDisplay = new dragonBones::SFMLArmatureDisplay("Armature");
-  cout << " == DEBUG 5" << endl;
 
+  // SCALE
   armatureDisplay->getArmature()->getBone("root")->offset.scaleX = scale;
   armatureDisplay->getArmature()->getBone("root")->offset.scaleY = scale;
 
-  // SCALE
   armatureProxy = armatureDisplay->getArmatureProxy();
 }
 
@@ -31,4 +26,8 @@ void Character::setPosition(float x, float y) {
 
 void Character::setFlipX(bool flipX) {
   armatureDisplay->getArmature()->getBone("root")->offset.scaleX = -1*fabs(armatureDisplay->getArmature()->getBone("root")->offset.scaleX);
+}
+
+string Character::getName() {
+  return this->name;
 }

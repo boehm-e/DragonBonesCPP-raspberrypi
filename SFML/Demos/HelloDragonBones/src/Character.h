@@ -13,6 +13,7 @@ public:
   Character (string name, float scale=1.0f);
   virtual ~Character (){}
 
+  string name;
   sf::Texture texture;
   dragonBones::SFMLFactory factory;
   dragonBones::SFMLArmatureDisplay *armatureDisplay;
@@ -21,4 +22,5 @@ public:
   void setAnimation(string animName, int iterations=0);
   void setPosition(float x, float y);
   void setFlipX(bool flipX);
+  string getName();
 };
