@@ -29,6 +29,6 @@ void Background::Draw(sf::RenderWindow * window) {
 }
 
 void Background::Update(float deltaTime) {
-  this->background->setPosition( this->background->getPosition().x-deltaTime*24 , 0);
+  this->background->setPosition( this->background->getPosition().x-deltaTime*50 , 0);
   this->background_loop->setPosition( this->background->getPosition().x+this->background->getGlobalBounds().width, 0);
 }

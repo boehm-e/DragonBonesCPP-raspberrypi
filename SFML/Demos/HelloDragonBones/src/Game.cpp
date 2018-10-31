@@ -20,7 +20,7 @@ void Game::Events() {
 		this->window->close();
 
 		if (event.type == sf::Event::KeyPressed) {
-			findCharacterByName("sheep")->setAnimation("goat_idle_anim");
+			findCharacterByName("sheep")->setAnimation("goat_walk_anim");
 		}
 	}
 }
@@ -39,20 +39,20 @@ void Game::Start(bool fullscreen) {
 	Background *background = new Background("castle");
 
 
-	Character *sheep = new Character("sheep", 0.25f);
-	sheep->setAnimation("goat_sleep_idle_anim");
-	sheep->setFlipX(true);
-	sheep->setPosition(427.f, settings->height);
-	characters.push_back(sheep);
-
 	Character *dragon = new Character("dragon", 0.25f);
 	dragon->setAnimation("stand");
-	dragon->setPosition(227.f, settings->height);
+	dragon->setPosition(427.f, settings->height);
+	dragon->setFlipX(true);
 	characters.push_back(dragon);
+
+	Character *sheep = new Character("sheep", 0.25f);
+	sheep->setAnimation("goat_sleep_idle_anim");
+	// sheep->setFlipX(true);
+	sheep->setPosition(227.f, settings->height);
+	characters.push_back(sheep);
 
 
 	sf::Clock clock;
-	bool anim = true;
 	while (this->window->isOpen())
 	{
 		float deltaTime = clock.restart().asSeconds();
