@@ -20,8 +20,10 @@ void Character::setAnimation(string animName, int iterations) {
   this->armatureDisplay->getAnimation()->fadeIn (animName, 0.4f, iterations);
 }
 
-void Character::setPosition(float x, float y) {
-  this->armatureDisplay->setPosition({ x, y });
+void Character::setPosition(double x, double y) {
+  this->x = x;
+  this->y = y;
+  this->armatureDisplay->setPosition({ this->x, this->y });
 }
 
 void Character::setFlipX(bool flipX) {

@@ -39,13 +39,13 @@ void Game::Start(bool fullscreen) {
 	Background *background = new Background("castle");
 
 
-	Character *dragon = new Character("dragon", 0.25f);
-	dragon->setAnimation("stand");
-	dragon->setPosition(427.f, settings->height);
-	dragon->setFlipX(true);
-	characters.push_back(dragon);
+	Character *rooster = new Character("rooster", 0.35);
+	rooster->setAnimation("rooster_walk_anim");
+	rooster->setPosition(427.f, settings->height);
+	rooster->setFlipX(true);
+	characters.push_back(rooster);
 
-	Character *sheep = new Character("sheep", 0.25f);
+	Character *sheep = new Character("sheep", 0.35);
 	sheep->setAnimation("goat_sleep_idle_anim");
 	// sheep->setFlipX(true);
 	sheep->setPosition(227.f, settings->height);
@@ -60,16 +60,18 @@ void Game::Start(bool fullscreen) {
 
 		this->Events();
 
-		for (auto &character : characters) {
-			character->factory.update(deltaTime/2);
-		}
 
 		this->window->clear();
 
 		background->Update(deltaTime);
 		background->Draw(this->window);
+		rooster->x -= deltaTime*50;
+		rooster->setPosition(rooster->x, rooster->y);
+		sheep->x += deltaTime*50;
+		sheep->setPosition(sheep->x, sheep->y);
 
 		for (auto &character : characters) {
+			character->factory.update(deltaTime/2);
 			this->window->draw(*character->armatureDisplay);
 		}
 
