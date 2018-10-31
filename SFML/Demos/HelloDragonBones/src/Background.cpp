@@ -16,8 +16,8 @@ Background::Background(string name) {
 
 void Background::Draw(sf::RenderWindow * window) {
   // cout << "background width" << background->getGlobalBounds().width << endl;
-  cout << "background remain visible : " << background->getGlobalBounds().width - 640 + background->getPosition().x << endl;
-  if (background_loop->getGlobalBounds().width - 640 + background_loop->getPosition().x < 0) {
+  cout << "background remain visible : " << background->getGlobalBounds().width - 854 + background->getPosition().x << endl;
+  if (background_loop->getGlobalBounds().width - 854 + background_loop->getPosition().x < 0) {
     cout << "SWITCH" << endl;
     sf::Sprite *background_tmp = background_loop;
     background_loop = background;

@@ -42,12 +42,12 @@ void Game::Start(bool fullscreen) {
 	Character *sheep = new Character("sheep", 0.25f);
 	sheep->setAnimation("goat_sleep_idle_anim");
 	sheep->setFlipX(true);
-	sheep->setPosition(427.f, 360.f);
+	sheep->setPosition(427.f, this->height);
 	characters.push_back(sheep);
 
 	Character *dragon = new Character("dragon", 0.25f);
 	dragon->setAnimation("stand");
-	dragon->setPosition(227.f, 360.f);
+	dragon->setPosition(227.f, this->height);
 	characters.push_back(dragon);
 
 

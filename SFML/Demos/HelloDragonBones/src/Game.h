@@ -14,8 +14,8 @@ public:
   sf::Texture *texture;
   sf::RenderWindow * window;
    // projector resolution
-  int width = 640;
-  int height = 360;
+  float width = 854.0f;
+  float height = 480.0f;
 
   list<Character*> characters;
 
