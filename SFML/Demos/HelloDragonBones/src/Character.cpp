@@ -5,11 +5,11 @@ Character::Character(string name, float scale) {
 
 
   cout << " == DEBUG 1" << endl;
-  texture.loadFromFile("data/"+name+"/"+name+"_tex.png");
+  texture.loadFromFile("data/characters/"+name+"/"+name+"_tex.png");
   cout << " == DEBUG 2" << endl;
-  factory.loadDragonBonesData("data/"+name+"/"+name+"_ske.json");
+  factory.loadDragonBonesData("data/characters/"+name+"/"+name+"_ske.json");
   cout << " == DEBUG 3" << endl;
-  factory.loadTextureAtlasData("data/"+name+"/"+name+"_tex.json", &texture);
+  factory.loadTextureAtlasData("data/characters/"+name+"/"+name+"_tex.json", &texture);
   cout << " == DEBUG 4" << endl;
   armatureDisplay = new dragonBones::SFMLArmatureDisplay("Armature");
   cout << " == DEBUG 5" << endl;

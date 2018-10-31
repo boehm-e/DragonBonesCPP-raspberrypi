@@ -7,17 +7,33 @@ using namespace std;
 
 list<Character*> characters;
 
+
+sf::Sprite &createBackground() {
+	sf::Texture *texture = new sf::Texture();
+	if (!texture->loadFromFile("./data/landscapes/landscape.png")){
+		cout << "COULD NOT LOAD BACKGROUND" << endl;
+	}
+	sf::Sprite *background = new sf::Sprite();
+	background->setTexture(*texture);
+	background->setScale(0.4, 0.4);
+	return *background;
+}
+
 int main()
 {
 
 	#ifdef __aarch64__
-	sf::RenderWindow window(sf::VideoMode(640, 360), "Magic Lamp", sf::Style::Fullscreen);
 	cout << "---- FULLSCREEN" << endl;
+	sf::RenderWindow window(sf::VideoMode(640, 360), "Magic Lamp", sf::Style::Fullscreen);
 	#else
 	sf::RenderWindow window(sf::VideoMode(640, 360), "Magic Lamp");
 	cout << "---- NOT FULLSCREEN" << endl;
 	#endif
 	window.setMouseCursorVisible(false);
+
+
+	sf::Sprite background = createBackground();
+
 
 	Character *sheep = new Character("sheep", 0.2f);
 	sheep->setAnimation("goat_sleep_idle_anim");
@@ -36,6 +52,7 @@ int main()
 	while (window.isOpen())
 	{
 		float deltaTime = clock.restart().asSeconds();
+
 
 		sf::Event event;
 		while (window.pollEvent(event))
@@ -59,6 +76,8 @@ int main()
 		}
 
 		window.clear();
+		background.setPosition( background.getPosition().x-deltaTime*10 , 0);
+		window.draw(background);
 		for (auto &character : characters) {
 			window.draw(*character->armatureDisplay);
 		}
