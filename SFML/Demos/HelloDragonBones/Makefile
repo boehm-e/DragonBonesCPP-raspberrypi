@@ -414,7 +414,9 @@ RUN_FILE := $(RUN_DIR)/$(RUN_NAME)$(RUN_EXT)
 
 # List of sources, headers and templates
 SOURCES   := $(shell find $(SRC_DIRS) -type f -name '*$(subst $(SPACE),' -or -name '*,$(SRC_EXTS))')
+SOURCES   := $(shell find $(SRC_DIRS) -type f -name '*$(subst $(SPACE),' -or -name 'src/*,$(SRC_EXTS))')
 HEADERS   := $(shell find $(INC_DIRS) -type f -name '*$(subst $(SPACE),' -or -name '*,$(INC_EXTS))')
+HEADERS   := $(shell find $(INC_DIRS) -type f -name '*$(subst $(SPACE),' -or -name 'src/*,$(INC_EXTS))')
 TEMPLATES := $(shell find $(TEP_DIRS) -type f -name '*$(subst $(SPACE),' -or -name '*,$(TEP_EXTS))')
 
 # List of objects to be linked
