@@ -17,7 +17,7 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(640, 360), "Magic Lamp");
 	cout << "---- NOT FULLSCREEN" << endl;
 	#endif
-
+	window.setMouseCursorVisible(false);
 
 	Character *sheep = new Character("sheep", 0.2f);
 	sheep->setAnimation("goat_sleep_idle_anim");
