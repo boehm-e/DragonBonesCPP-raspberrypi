@@ -20,7 +20,7 @@ void Game::Events() {
 		this->window->close();
 
 		if (event.type == sf::Event::KeyPressed) {
-			findCharacterByName("sheep")->setAnimation("goat_walk_anim");
+			findCharacterByName("sheep")->setAnimation("goat_sleep_idle_anim");
 		}
 	}
 }
@@ -46,7 +46,7 @@ void Game::Start(bool fullscreen) {
 	characters.push_back(rooster);
 
 	Character *sheep = new Character("sheep", 0.35);
-	sheep->setAnimation("goat_sleep_idle_anim");
+	sheep->setAnimation("goat_walk_anim");
 	// sheep->setFlipX(true);
 	sheep->setPosition(227.f, settings->height);
 	characters.push_back(sheep);
