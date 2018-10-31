@@ -10,12 +10,12 @@ list<Character*> characters;
 int main()
 {
 
-	#ifdef __aarch__
+	#ifdef __aarch64__
 	sf::RenderWindow window(sf::VideoMode(640, 360), "Magic Lamp", sf::Style::Fullscreen);
 	cout << "---- FULLSCREEN" << endl;
   #endif
 
-	#ifndef __aarch__
+	#ifndef __aarch64__
 	sf::RenderWindow window(sf::VideoMode(640, 360), "Magic Lamp");
 	cout << "---- NOT FULLSCREEN" << endl;
 	#endif
