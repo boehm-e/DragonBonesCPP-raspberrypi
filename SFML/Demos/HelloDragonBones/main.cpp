@@ -15,7 +15,6 @@ sf::Sprite &createBackground() {
 	}
 	sf::Sprite *background = new sf::Sprite();
 	background->setTexture(*texture);
-	background->setScale(0.4, 0.4);
 	return *background;
 }
 
