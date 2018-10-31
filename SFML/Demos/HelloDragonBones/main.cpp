@@ -10,7 +10,7 @@ list<Character*> characters;
 int main()
 {
 
-	#ifdef aarch64
+	#ifdef __aarch64__
 	sf::RenderWindow window(sf::VideoMode(640, 360), "Magic Lamp", sf::Style::Fullscreen);
 	cout << "---- FULLSCREEN" << endl;
 	#else
@@ -18,7 +18,7 @@ int main()
 	cout << "---- NOT FULLSCREEN" << endl;
 	#endif
 
-	
+
 	Character *sheep = new Character("sheep", 0.2f);
 	sheep->setAnimation("goat_sleep_idle_anim");
 	sheep->setFlipX(true);
