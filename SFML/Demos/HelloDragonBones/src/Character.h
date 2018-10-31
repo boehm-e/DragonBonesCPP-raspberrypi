@@ -18,7 +18,7 @@ public:
   dragonBones::SFMLArmatureDisplay *armatureDisplay;
   dragonBones::SFMLArmatureProxy* armatureProxy;
 
-  void setAnimation(string animName, int iterations=-1);
+  void setAnimation(string animName, int iterations=0);
   void setPosition(float x, float y);
   void setFlipX(bool flipX);
 };

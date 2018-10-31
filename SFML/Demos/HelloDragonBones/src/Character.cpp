@@ -3,10 +3,16 @@ using namespace std;
 
 Character::Character(string name, float scale) {
 
-  texture.loadFromFile("data/sheep/"+name+".png");
-  factory.loadDragonBonesData("data/sheep/"+name+"_ske.json");
-  factory.loadTextureAtlasData("data/sheep/"+name+"_tex.json", &texture);
+
+  cout << " == DEBUG 1" << endl;
+  texture.loadFromFile("data/"+name+"/"+name+"_tex.png");
+  cout << " == DEBUG 2" << endl;
+  factory.loadDragonBonesData("data/"+name+"/"+name+"_ske.json");
+  cout << " == DEBUG 3" << endl;
+  factory.loadTextureAtlasData("data/"+name+"/"+name+"_tex.json", &texture);
+  cout << " == DEBUG 4" << endl;
   armatureDisplay = new dragonBones::SFMLArmatureDisplay("Armature");
+  cout << " == DEBUG 5" << endl;
 
   armatureDisplay->getArmature()->getBone("root")->offset.scaleX = scale;
   armatureDisplay->getArmature()->getBone("root")->offset.scaleY = scale;

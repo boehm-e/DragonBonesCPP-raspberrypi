@@ -7,22 +7,24 @@ using namespace std;
 
 list<Character*> characters;
 
+// void createSheep() {}
+
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1024, 768), "My window");
+	sf::RenderWindow window(sf::VideoMode(640, 360), "Magic Lamp");
 	window.setFramerateLimit(60);
 
 
-	Character *sheep = new Character("sheep", 0.5f);
+	Character *sheep = new Character("sheep", 0.2f);
 	sheep->setAnimation("goat_sleep_idle_anim");
-	sheep->setPosition(627.f, 480.f);
+	sheep->setFlipX(true);
+	sheep->setPosition(427.f, 360.f);
 	characters.push_back(sheep);
 
-	Character *sheep2 = new Character("sheep", 0.5f);
-	sheep2->setFlipX(true);
-	sheep2->setAnimation("goat_idle_anim");
-	sheep2->setPosition(227.f, 480.f);
-	characters.push_back(sheep2);
+	Character *dragon = new Character("dragon", 0.2f);
+	dragon->setAnimation("stand");
+	dragon->setPosition(227.f, 360.f);
+	characters.push_back(dragon);
 
 
 	sf::Clock clock;
@@ -48,16 +50,13 @@ int main()
 			}
 		}
 
-		cout << deltaTime << endl;
-
-
 		for (auto &character : characters) {
 			character->factory.update(deltaTime);
 		}
 
 		window.clear();
 		for (auto &character : characters) {
-				window.draw(*character->armatureDisplay);
+			window.draw(*character->armatureDisplay);
 		}
 
 		window.display();
